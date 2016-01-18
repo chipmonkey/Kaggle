@@ -7,8 +7,11 @@ CompareSets <- function(test, train) {
   fields <- setdiff(fields, names(which(sapply(train, class) =='factor')))
   
   for (name in sort(fields)) {
-    plot(density(na.omit(train[1:comprows,name])), col="red", main=name)
-    lines(density(na.omit(test[1:comprows,name])), col="blue")
+    print(name)
+    if (class(train[[name]]) %in% c('numeric', 'integer')) {
+      plot(density(na.omit(train[1:comprows,name])), col="red", main=name)
+      lines(density(na.omit(test[1:comprows,name])), col="blue")
+    }
   }
   
   par(oldpar)
