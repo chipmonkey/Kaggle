@@ -13,3 +13,18 @@ for(i in intersect(names(train), names(test))){
   train[is.na(train[,i]), i] <- -1
   test[is.na(test[,i]), i] <- -1
 }
+
+# Here's another approach that replaces NA with the median value; interesting for comparison:
+    null_fields <- sapply(train, function(x) length(which(is.na(x))))
+    null_fields <- names(which(null_fields > 0))
+    
+    for (i in null_fields) {
+      if(class(train[,i]) %in% c('character', 'factor')) {
+        replace_value <- names(sort(table(train[,i]), decreasing = TRUE)[1])
+      } else if(class(train[,i]) %in% c('integer', 'numeric')) {
+        replace_value <- median(train[,i], na.rm = TRUE)
+      }
+      train[which(is.na(train[,i])),i] <- replace_value
+      test[which(is.na(test[,i])),i] <- replace_value
+      # plot(density(train[,i], na.rm = TRUE), main=i)
+    }
