@@ -9,6 +9,7 @@ Golden feature ideas such as:
 * Counting the number of out-of-band or NA or zero fields in a record
 * Techniques to generate features such as: PCA, t-SNE, SOM, etc.
 * Scaling methods
+* Duplicate feature identification
 * Sample Models for a variety of models (from decision trees to neural networks) and output types (logit, regression, classification)
 * Feature selection notes
 * Meta-model generation for automatic mining
