@@ -1,5 +1,8 @@
   CompareSets <- function(test, train) {
     
+    test <- as.data.frame(test)  # Hack a fix if the input is data.table or something
+    train <- as.data.frame(test) # it works, but it could probably be better... fix later
+  
     comprows <- ifelse(nrow(train) < nrow(test), nrow(train), nrow(test))
     fields <- intersect(names(train), names(test))
     fields <- setdiff(fields, 'Id')
